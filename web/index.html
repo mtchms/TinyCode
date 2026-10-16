@@ -5,7 +5,7 @@
 <p class="mode-label">Два режима:</p>
 <nav class="product-nav" aria-label="Режимы TinyCode"><a href="./generator.html" aria-current="page">Code Generator</a><a href="./narrator.html" >Code Narrator</a></nav>
 <section class="intro"><h2>Code Generator</h2><p>Code Generator - модель Tern 124M с реализованным reasoning, дообучена для генерации простого кода на Python на данных: (текстовый запрос; reasoning + код на Python).</p>
-<p class="dataset">Объём данных дообучения: 2.5М токенов</p></section>
+<p class="dataset">Объём данных дообучения: 22 424 134 токенов</p></section>
 <main class="layout"><section class="card"><h2>Что нужно сделать?</h2><p class="hint" id="editor-help">Опишите задачу на английском: что получает код, что нужно сделать и что вернуть или напечатать. Примеры можно редактировать.</p>
 <div id="examples" aria-label="Примеры"></div><p class="hint" id="editable-hint">Можно стереть пример в поле ниже и написать свой запрос на английском.</p><textarea id="request" aria-label="Что нужно сделать?" aria-describedby="editor-help editable-hint" spellcheck="false"></textarea>
 <div class="actions"><button id="load" title="Загрузите веса один раз перед первым ответом">Загрузить модель</button><button id="generate" class="primary" disabled>Создать код</button><button id="stop" disabled>Остановить</button><select id="threads" aria-label="Количество потоков CPU" title="Выберите до загрузки модели. Один поток уменьшает нагрузку на компьютер"><option value="4">4 потока CPU</option><option value="1">1 поток CPU</option></select></div>

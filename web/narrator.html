@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TinyCode | Code Narrator</title><link rel="stylesheet" href="./style.css"></head><body>
+<header><h1><span>TinyCode.</span> Tern 124M + reasoning + finetune on Python code tasks</h1><span class="tag">Вычисления на вашем CPU</span></header>
+<p class="mode-label">Два режима:</p>
+<nav class="product-nav" aria-label="Режимы TinyCode"><a href="./generator.html" >Code Generator</a><a href="./narrator.html" aria-current="page">Code Narrator</a></nav>
+<section class="intro"><h2>Code Narrator</h2><p>Code Narrator - модель Tern 124M с реализованным reasoning, дообучена для объяснения простого кода на Python на данных: (код на Python; reasoning + окончательный ответ).</p>
+<p class="dataset">Объём данных дообучения: 9М токенов</p></section>
+<main class="layout"><section class="card"><h2>Примеры и код на Python</h2><p class="hint" id="editor-help">В этом поле можно писать любой свой код или редактировать примеры. Лучше всего подходят короткие программы и функции на Python.</p>
+<div id="examples" aria-label="Примеры"></div><p class="hint" id="editable-hint">Можно стереть пример в поле ниже и написать свой код на Python.</p><textarea id="code" aria-label="Примеры и код на Python" aria-describedby="editor-help editable-hint" spellcheck="false"></textarea>
+<div class="actions"><button id="load" title="Загрузите веса один раз перед первым ответом">Загрузить модель</button><button id="generate" class="primary" disabled>Объяснить код</button><button id="stop" disabled>Остановить</button><select id="threads" aria-label="Количество потоков CPU" title="Выберите до загрузки модели. Один поток уменьшает нагрузку на компьютер"><option value="4">4 потока CPU</option><option value="1">1 поток CPU</option></select></div>
+<p class="microcopy">Сначала загрузите модель, затем нажмите «Объяснить код». Ctrl + Enter - объяснить код.</p></section>
+<section class="card" aria-label="Ответ модели"><div class="output-head"><h2>Объяснение кода</h2></div>
+<p class="output-help">Reasoning описывает шаги программы, итог объясняет её результат. Ответ появляется по мере генерации.</p>
+<div class="generated-plan"><strong>Reasoning</strong><pre id="reasoning">Здесь появится пошаговое объяснение.</pre></div>
+<h2>Итог</h2><pre id="summary"></pre><div id="stats"></div></section></main>
+<div id="status" class="status" role="status">Модель ещё не загружена.</div>
+<footer>Модель генерирует ответы на английском.</footer>
+<script type="module" src="app.js"></script></body></html>

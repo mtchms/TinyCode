@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "esbuild worker.js --bundle --format=esm --platform=browser --outfile=worker.bundle.js --external:./node_modules/pyodide/*",
+    "build:generator": "esbuild generator_worker.js --bundle --format=esm --platform=browser --outfile=generator_worker.bundle.js"
+  },
+  "dependencies": {
+    "esbuild": "0.25.12",
+    "js-tiktoken": "1.0.21",
+    "onnxruntime-web": "1.23.2",
+    "pyodide": "0.28.3"
+  }
+}

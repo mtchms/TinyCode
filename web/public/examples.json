@@ -1,0 +1,117 @@
+[
+  {
+    "id": "practical-reward_points",
+    "code": "def reward_points(payments):\n    result = []\n    for payment in payments:\n        if payment >= 50:\n            points = payment * 2\n        else:\n            points = payment + 5\n        result.append(points)\n    return result",
+    "display_name": "Пример 1"
+  },
+  {
+    "id": "practical-clean_labels",
+    "code": "def clean_labels(words):\n    return [word.strip().lower() for word in words if word.strip()]",
+    "display_name": "Пример 2"
+  },
+  {
+    "id": "practical-daily_checkpoints",
+    "code": "def daily_checkpoints(limit):\n    day = 0\n    result = []\n    while day < limit:\n        result.append(day * 3)\n        day += 1\n    return result",
+    "display_name": "Пример 3"
+  },
+  {
+    "id": "practical-first_overdue",
+    "code": "def first_overdue(balances):\n    for balance in balances:\n        if balance < 0:\n            return balance\n    return None",
+    "display_name": "Пример 4"
+  },
+  {
+    "id": "practical-positive_map",
+    "code": "def positive_map(values):\n    return {value: value * 3 for value in values if value > 0}",
+    "display_name": "Пример 5"
+  },
+  {
+    "id": "practical-indexed_scores",
+    "code": "def indexed_scores(scores):\n    result = []\n    for index, score in enumerate(scores, 1):\n        result.append(index * score)\n    return result",
+    "display_name": "Пример 6"
+  },
+  {
+    "id": "practical-every_second",
+    "code": "def every_second(values):\n    return values[::2]",
+    "display_name": "Пример 7"
+  },
+  {
+    "id": "practical-active_word_report",
+    "code": "def active_word_report(enabled, text):\n    if not enabled:\n        return None\n    return \"-\".join(text.lower().split())",
+    "display_name": "Пример 8"
+  },
+  {
+    "id": "practical-priority_score",
+    "code": "def priority_score(enabled, value):\n    if not enabled:\n        return -1\n    if value == 0:\n        return 100\n    if value < 0:\n        return 0\n    return value + 10",
+    "display_name": "Пример 9"
+  },
+  {
+    "id": "practical-skip_refunds",
+    "code": "def skip_refunds(payments):\n    result = []\n    for payment in payments:\n        if payment < 0:\n            continue\n        result.append(payment * 2)\n    return result",
+    "display_name": "Пример 10"
+  },
+  {
+    "id": "demo-recursive-250",
+    "code": "def process(enabled, values, enabled2, value, other_values):\n    value = value - 3\n    if not enabled:\n        if not enabled2:\n            if value == -29:\n                return True\n            elif value == 8:\n                return 52\n            elif value == 17:\n                return 41\n            else:\n                return 144\n        else:\n            temp2 = []\n            for temp3, temp4 in zip(values, other_values):\n                temp2.append(temp3 + temp4)\n            return temp2\n    else:\n        return -1",
+    "display_name": "Пример 11"
+  },
+  {
+    "id": "practical-signed_fee",
+    "code": "def signed_fee(amount):\n    if amount < 0:\n        fee = amount * -2\n    else:\n        fee = amount + 3\n    return fee * 2",
+    "display_name": "Пример 12"
+  },
+  {
+    "id": "practical-even_columns",
+    "code": "def even_columns(size):\n    result = []\n    for row in range(size):\n        for column in range(5):\n            if column % 2 == 0:\n                result.append(row + column)\n    return result",
+    "display_name": "Пример 13"
+  },
+  {
+    "id": "demo-recursive-276",
+    "code": "def process(limit, enabled, enabled2, value):\n    if enabled2:\n        if enabled:\n            temp1 = -2\n            temp2 = 0\n            while temp2 < limit:\n                temp1 += temp2\n                temp2 += 1\n            return temp1\n        else:\n            if value is None:\n                return None\n            return value + 5\n    else:\n        if value < 15:\n            temp3 = value\n        else:\n            temp3 = value % 3\n        return value % 3 - 4 // 3",
+    "display_name": "Пример 14"
+  },
+  {
+    "id": "practical-empty_report",
+    "code": "def empty_report(enabled, values):\n    if not enabled:\n        return None\n    if not values:\n        return []\n    return [value * 2 for value in values]",
+    "display_name": "Пример 15"
+  },
+  {
+    "id": "snippet-demo-1",
+    "code": "print(\"hi\")",
+    "display_name": "Пример 16"
+  },
+  {
+    "id": "snippet-demo-2",
+    "code": "price = 12\nquantity = 3\ntotal = price * quantity\nprint(total)",
+    "display_name": "Пример 17"
+  },
+  {
+    "id": "snippet-demo-3",
+    "code": "values = []\nfor number in range(6):\n    values.append(number * number)\nprint(values)",
+    "display_name": "Пример 18"
+  },
+  {
+    "id": "snippet-demo-4",
+    "code": "for index, value in enumerate([2, 4, 6], 1):\n    print(index * value)",
+    "display_name": "Пример 19"
+  },
+  {
+    "id": "snippet-demo-5",
+    "code": "text = \"  Hello Python  \"\nprint(text.strip().lower())",
+    "display_name": "Пример 20"
+  },
+  {
+    "id": "snippet-demo-6",
+    "code": "record = {\"price\": 12}\nprint(record.get(\"price\", 0))",
+    "display_name": "Пример 21"
+  },
+  {
+    "id": "snippet-demo-7",
+    "code": "print(\"value\", 3, sep=\":\", end=\"!\")",
+    "display_name": "Пример 22"
+  },
+  {
+    "id": "snippet-demo-8",
+    "code": "number = 0\nwhile number < 4:\n    print(number)\n    number += 1",
+    "display_name": "Пример 23"
+  }
+]

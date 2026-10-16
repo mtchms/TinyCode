@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TinyCode | Code Generator</title><link rel="stylesheet" href="./style.css"></head><body>
+<header><h1><span>TinyCode.</span> Tern 124M + reasoning + finetune on Python code tasks</h1><span class="tag">Вычисления на вашем CPU</span></header>
+<p class="mode-label">Два режима:</p>
+<nav class="product-nav" aria-label="Режимы TinyCode"><a href="./generator.html" aria-current="page">Code Generator</a><a href="./narrator.html" >Code Narrator</a></nav>
+<section class="intro"><h2>Code Generator</h2><p>Code Generator - модель Tern 124M с реализованным reasoning, дообучена для генерации простого кода на Python на данных: (текстовый запрос; reasoning + код на Python).</p>
+<p class="dataset">Объём данных дообучения: 2.5М токенов</p></section>
+<main class="layout"><section class="card"><h2>Что нужно сделать?</h2><p class="hint" id="editor-help">Опишите задачу на английском: что получает код, что нужно сделать и что вернуть или напечатать. Примеры можно редактировать.</p>
+<div id="examples" aria-label="Примеры"></div><p class="hint" id="editable-hint">Можно стереть пример в поле ниже и написать свой запрос на английском.</p><textarea id="request" aria-label="Что нужно сделать?" aria-describedby="editor-help editable-hint" spellcheck="false"></textarea>
+<div class="actions"><button id="load" title="Загрузите веса один раз перед первым ответом">Загрузить модель</button><button id="generate" class="primary" disabled>Создать код</button><button id="stop" disabled>Остановить</button><select id="threads" aria-label="Количество потоков CPU" title="Выберите до загрузки модели. Один поток уменьшает нагрузку на компьютер"><option value="4">4 потока CPU</option><option value="1">1 поток CPU</option></select></div>
+<p class="microcopy">Сначала загрузите модель, затем нажмите «Создать код». Ctrl + Enter - создать код.</p></section>
+<section class="card" aria-label="Ответ модели"><div class="output-head"><h2>Код на Python</h2><button id="copy" disabled>Скопировать код</button></div>
+<p class="output-help">Reasoning - краткий план перед кодом. Код можно скопировать, здесь он не исполняется.</p>
+<div id="plan" class="generated-plan" hidden><strong>Reasoning</strong><p id="plan-text"></p></div>
+<pre id="output">Здесь появятся план и сгенерированный код.</pre><div id="stats"></div></section></main>
+<div id="status" class="status" role="status">Модель ещё не загружена.</div>
+<footer>Модель генерирует ответы на английском.</footer>
+<script type="module" src="generator_app.js"></script></body></html>

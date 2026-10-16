@@ -1,0 +1,62 @@
+[
+  {
+    "request": "divide 67 by 89"
+  },
+  {
+    "request": "divide with remainder 67 by 89"
+  },
+  {
+    "request": "remove ones"
+  },
+  {
+    "request": "subtract ten from three"
+  },
+  {
+    "request": "floor divide negative seventeen by five"
+  },
+  {
+    "request": "what is seventeen mod five?"
+  },
+  {
+    "request": "remove duplicates preserving order"
+  },
+  {
+    "request": "check if a number is prime"
+  },
+  {
+    "request": "calculate Fibonacci n starting with 0 and 1"
+  },
+  {
+    "request": "check a palindrome ignoring case"
+  },
+  {
+    "request": "keep only even numbers"
+  },
+  {
+    "request": "count even numbers in a list"
+  },
+  {
+    "request": "sum the even numbers in a list"
+  },
+  {
+    "request": "flatten a list of lists"
+  },
+  {
+    "request": "sort numbers descending"
+  },
+  {
+    "request": "join words with spaces"
+  },
+  {
+    "request": "remove zeros"
+  },
+  {
+    "request": "print numbers from -2 to 3 inclusive"
+  },
+  {
+    "request": "add 5 and 7"
+  },
+  {
+    "request": "keep numbers greater than 5, then square them and return the new list"
+  }
+]

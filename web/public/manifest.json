@@ -1,0 +1,18 @@
+{
+  "checkpoint_sha256": "a33fe6cd0622b2a66cfaf3eb2fca0bb8898e57bee96f5991c33a87f37c118384",
+  "model_sha256": "8fa1b2d1ab98ebb763216773e4c10c1f13f1550b7b59cb6f3525e0115d395f78",
+  "bytes": 661635360,
+  "layers": 12,
+  "heads": 12,
+  "head_dim": 64,
+  "context": 1024,
+  "precision": "FP32",
+  "exported_at": 1792142394.7867913,
+  "model_file": "model.snippets.fp32.onnx",
+  "snippet_adapter": {
+    "path": "checkpoints/snippets/polished_best.pt",
+    "sha256": "65bb7bc597dfa1fa213681314df64a4cf002cebe1cebfd081f606aeac4c69602",
+    "rank": 16,
+    "policy": "Disabled for functions; enabled for ordinary Python snippets"
+  }
+}

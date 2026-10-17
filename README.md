@@ -49,5 +49,3 @@ This custom Tern model is not a Transformers AutoModel or hosted chat service.
 - coi-serviceworker: MIT; vendored license in web/COI-LICENSE.txt
 - Base model: https://huggingface.co/mikahniehaus/Tern
 
-Reasoning is a generated supervised plan or explanation, not a guarantee of
-correctness. The original model and dependencies retain their respective terms.

@@ -23,6 +23,10 @@ if (typeof window === 'undefined') {
 
     self.addEventListener("fetch", function (event) {
         const r = event.request;
+        // TinyCode patch: never proxy large model streams. Native CORS fetches
+        // retain their original browser-owned stream, especially in Firefox.
+        const url = new URL(r.url);
+        if (url.origin !== self.location.origin || /\.onnx$/i.test(url.pathname)) return;
         if (r.cache === "only-if-cached" && r.mode !== "same-origin") {
             return;
         }

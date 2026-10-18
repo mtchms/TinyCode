@@ -1,4 +1,4 @@
-const $=id=>document.getElementById(id),worker=new Worker('./generator_worker.bundle.js',{type:'module'});
+const $=id=>document.getElementById(id),worker=new Worker('./generator_worker.bundle.js?v=download-v2',{type:'module'});
 let loaded=false,busy=false,lastText='';
 function showPlan(text){$('plan').hidden=!text;$('plan-text').textContent=text||'';}
 function state(){

@@ -1,4 +1,4 @@
-const $=id=>document.getElementById(id),worker=new Worker('./worker.bundle.js',{type:'module'});
+const $=id=>document.getElementById(id),worker=new Worker('./worker.bundle.js?v=download-v2',{type:'module'});
 let loaded=false,busy=false,report=null,loadInfo=null,examples=[];
 function state(){$('generate').disabled=!loaded||busy;$('load').disabled=loaded||busy;$('threads').disabled=loaded||busy;$('stop').disabled=!busy||!loaded;}
 function display(text){

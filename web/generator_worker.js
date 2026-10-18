@@ -1,6 +1,7 @@
 import * as ort from 'onnxruntime-web/wasm';
 import {getEncoding} from 'js-tiktoken';
 import {encodeFor} from './generator_encoding.js';
+import {downloadModel} from './model_download.js';
 
 let session,encoding,manifest,loading,cancelled=false;
 const send=(type,value={})=>postMessage({type,...value});
@@ -16,23 +17,13 @@ async function initialize(threads=4){
     const meta=await fetch('./public/generator/manifest.json');
     if(!meta.ok)throw Error('Модель пока не подготовлена');
     manifest=await meta.json();encoding=getEncoding('gpt2');
-    const cache=await caches.open('codegenerator-model');
     const url=manifest.model_url || new URL(`./public/generator/${manifest.model_file}?v=${manifest.model_sha256}`,self.location).href;
-    let response=await cache.match(url);const cached=!!response;
-    if(!response)response=await fetch(url);
-    if(!response.ok)throw Error('Не удалось загрузить модель');
-    const storing=cached?Promise.resolve():cache.put(url,response.clone()).catch(()=>{});
-    const bytes=new Uint8Array(manifest.bytes),reader=response.body.getReader();let received=0;
-    while(true){const {done,value}=await reader.read();if(done)break;bytes.set(value,received);received+=value.length;
-      send('status',{text:`${cached?'Чтение из кэша':'Загрузка модели'}: ${Math.round(received/manifest.bytes*100)}%`});}
-    if(received!==manifest.bytes)throw Error('Файл модели загружен не полностью');
-    const hash=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),b=>b.toString(16).padStart(2,'0')).join('');
-    if(hash!==manifest.model_sha256)throw Error('Контрольная сумма модели не совпала');
+    const {bytes,cached}=await downloadModel({url,size:manifest.bytes,sha256:manifest.model_sha256,progress:text=>send('status',{text})});
     ort.env.wasm.wasmPaths=new URL('./node_modules/onnxruntime-web/dist/',self.location).href;
     ort.env.wasm.numThreads=self.crossOriginIsolated?threads:1;
     send('status',{text:'Подготовка модели…'});
     session=await ort.InferenceSession.create(bytes,{executionProviders:['wasm'],graphOptimizationLevel:'all'});
-    await storing;send('ready',{loadSeconds:(performance.now()-started)/1000,cached,threads:ort.env.wasm.numThreads});
+    send('ready',{loadSeconds:(performance.now()-started)/1000,cached,threads:ort.env.wasm.numThreads});
   })();
   try{await loading;}catch(e){loading=null;throw e;}
 }

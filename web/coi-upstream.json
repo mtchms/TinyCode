@@ -1,4 +1,5 @@
 {
   "source": "https://github.com/gzuidhof/coi-serviceworker",
-  "commit": "7b1d2a092d0d2dd2b7270b6f12f13605de26f214"
+  "commit": "7b1d2a092d0d2dd2b7270b6f12f13605de26f214",
+  "local_patch": "Bypass cross-origin and .onnx model streams; keep COOP/COEP on same-origin page/runtime resources."
 }

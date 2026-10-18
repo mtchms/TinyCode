@@ -1,5 +1,6 @@
 import * as ort from 'onnxruntime-web/wasm';
 import {getEncoding} from 'js-tiktoken';
+import {downloadModel} from './model_download.js';
 
 let session, py, encoding, manifest, cancelled=false, loading;
 const send = (type, value={}) => postMessage({type,...value});
@@ -15,30 +16,12 @@ async function initialize(threads=4) {
     py=await loadPyodide({indexURL:new URL('./node_modules/pyodide/',self.location).href});
     py.runPython(await (await fetch('./public/preprocess.py')).text());
     encoding=getEncoding('gpt2');
-    const cache=await caches.open('codenarrator-browser-model');
     const url=manifest.model_url || new URL(`./public/${manifest.model_file||'model.fp32.onnx'}?v=${manifest.model_sha256}`,self.location).href;
-    let response=await cache.match(url);
-    const cached=!!response;
-    if(!response) response=await fetch(url);
-    if(!response.ok) throw Error(`Не удалось загрузить веса: HTTP ${response.status}`);
-    // Store the response in parallel; no remote model or inference requests.
-    const storing=!cached ? cache.put(url,response.clone()).catch(()=>{}) : Promise.resolve();
-    const bytes=new Uint8Array(manifest.bytes), reader=response.body.getReader();
-    let received=0;
-    while(true){
-      const {value,done}=await reader.read(); if(done) break;
-      bytes.set(value,received); received+=value.length;
-      send('status',{text:`${cached?'Чтение из кэша':'Загрузка весов'}: ${Math.round(received/manifest.bytes*100)}% · ${Math.round(received/1e6)} МБ`});
-    }
-    if(received!==manifest.bytes) throw Error('Файл модели загружен не полностью');
-    send('status',{text:'Проверка SHA-256 весов…'});
-    const hash=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),b=>b.toString(16).padStart(2,'0')).join('');
-    if(hash!==manifest.model_sha256) throw Error('Контрольная сумма модели не совпала');
+    const {bytes,cached}=await downloadModel({url,size:manifest.bytes,sha256:manifest.model_sha256,progress:text=>send('status',{text})});
     ort.env.wasm.wasmPaths=new URL('./node_modules/onnxruntime-web/dist/',self.location).href;
     ort.env.wasm.numThreads=self.crossOriginIsolated ? threads : 1;
     send('status',{text:`Подготовка модели · WASM CPU · ${ort.env.wasm.numThreads} потока…`});
     session=await ort.InferenceSession.create(bytes,{executionProviders:['wasm'],graphOptimizationLevel:'all'});
-    await storing;
     send('ready',{loadSeconds:(performance.now()-started)/1000,cached,threads:ort.env.wasm.numThreads,manifest});
   })();
   try {await loading;} catch(e){loading=null;throw e;}
